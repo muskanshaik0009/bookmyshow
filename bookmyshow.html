@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book My Show - Vijayawada</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: white;
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo img {
+            width: 120px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: black;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: red;
+            text-decoration: underline;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background: black;
+            border-radius: 20px;
+            padding: 5px 15px;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            padding: 8px;
+            width: 200px;
+            border-radius: 20px;
+            background: white;
+        }
+
+        .search-bar i {
+            color: red;
+            margin-right: 10px;
+        }
+
+        .hero {
+            background: url('https://picsum.photos/1600/500?grayscale') center/cover no-repeat;
+            color: red;
+            padding: 80px 30px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .movies {
+            padding: 40px 30px;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .movie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .movie-card {
+            background: red;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .movie-poster {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .movie-info {
+            padding: 15px;
+        }
+
+        .movie-title {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .movie-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            font-size: 14px;
+            margin: 8px 0;
+        }
+
+        .movie-rating {
+            color: #ffd700;
+        }
+
+        .footer {
+            background-color: red;
+            color: white;
+            padding: 40px 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .theaters {
+            padding: 40px 30px;
+            background-color: #f0f0f0;
+        }
+
+        .theater-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .theater-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .theater-name {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .show-times {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .show-time {
+            background: #f5f5f5;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .show-time:hover {
+            background: #e0e0e0;
+        }
+
+        footer {
+            background-color: red;
+            color: white;
+            padding: 40px 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+                margin-top: 10px;
+            }
+
+            .search-bar {
+                width: 100%;
+                margin-top: 10px;
+            }
+
+            .search-bar input {
+                width: 100%;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .movie-poster {
+                height: 220px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .btn {
+                font-size: 14px;
+                padding: 10px 20px;
+            }
+
+            .movie-title {
+                font-size: 16px;
+            }
+
+            .movie-meta {
+                font-size: 12px;
+            }
+
+            .movie-poster {
+                height: 180px;
+            }
+        }
+
+        /* Mobile menu toggle */
+        .menu-toggle {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: white;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                padding: 10px 20px;
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="https://www.pngitem.com/pimgs/b/578-5784441_vivo-ipl-png.png" width="50" height="50"
+                class="d-inline-block align-top" alt="logo" width="15px 45px">
+        </div>
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links">
+            <a href="./bookmyshow.html">Home</a>
+            <a href="./bookmyshow.html">Movies</a>
+            <a href="./bookmyshow.html">Theaters</a>
+            <a
+                href="https://r.search.yahoo.com/_ylt=Awr99XNBd01oAiwI64RXNyoA;_ylu=Y29sbwNncTEEcG9zAzEEdnRpZAMEc2VjA3Ny/RV=2/RE=1751116865/RO=10/RU=https%3a%2f%2fin.bookmyshow.com%2foffers/RK=2/RS=IT7K83t.hg48liTloMiJ28poeAw-">Offers</a>
+            <a href=" https://support.bookmyshow.com/support/home">Help</a>
+            <a
+                href="https://r.search.yahoo.com/_ylt=AwrO.ofJdk1om_kHGwBXNyoA;_ylu=Y29sbwNncTEEcG9zAzEEdnRpZAMEc2VjA3Ny/RV=2/RE=1751116746/RO=10/RU=https%3a%2f%2fplay.google.com%2fstore%2fapps%2fdetails%3fid%3dcom.bt.bms%26hl%3den-US/RK=2/RS=fo9deqGgLSb5R3b.G7VjFvBmYOA-">Download
+                App</a>
+            <a href="./login.html">Login</a>
+        </div>
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search movies, theaters...">
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Book Tickets for Latest Movies</h1>
+        <p>Find and book tickets for all upcoming Telugu, Hindi & Hollywood movies in Vijayawada theaters.</p>
+        <button class="btn">Explore Movies</button>
+    </section>
+    <section class="movies">
+        <h2 class="section-title">Telugu Movies</h2>
+        <div class="movie-grid">
+
+            <div class="movie-card">
+                <img src="https://www.cinejosh.com/reviewsimg/big/hit-the-third-case-review_b_0105251245.jpg"
+                    class="movie-poster" />
+                <div class="movie-info">
+                    <h3 class="movie-title">Hit 3</h3>
+                    <div class="movie-meta"><span>2h 30m</span><span class="movie-rating"><i class="fas fa-star"></i>
+                            4.8</span></div>
+                    <p>Action, Thriller</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://64.media.tumblr.com/11eb5ea6cb56c417b4706511191d12e1/tumblr_nfnoau8gIL1r9esjeo1_1280.jpg"
+                    class="movie-poster" />
+                <div class="movie-info">
+                    <h3 class="movie-title">Khaleja</h3>
+                    <div class="movie-meta"><span>2h 45m</span><span class="movie-rating"><i class="fas fa-star"></i>
+                            4.7</span></div>
+                    <p>Action, Comedy</p>
+                </div>
+            </div>
+
+            <div class="movie-card">
+                <img src=" https://cdn.gulte.com/wp-content/uploads/2023/07/BRO3.jpg" class="movie-poster" />
+                <div class="movie-info">
+                    <h3 class="movie-title">BRO</h3>
+                    <div class="movie-meta"><span>2h 10m</span><span class="movie-rating"><i class="fas fa-star"></i>
+                            4.6</span></div>
+                    <p>Fantasy, Drama</p>
+                </div>
+            </div>
+
+            <div class="movie-card">
+                <img src=" https://i.redd.it/pdjsve26yy8d1.jpeg" class="movie-poster" />
+                <div class="movie-info">
+                    <h3 class="movie-title">Kalki 2898 AD</h3>
+                    <div class="movie-meta"><span>2h 50m</span><span class="movie-rating"><i class="fas fa-star"></i>
+                            4.9</span></div>
+                    <p>Sci-Fi, Action</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="movies">
+        <h2 class="section-title">Hindi Movies</h2>
+        <div class="movie-grid">
+            <div class="movie-card">
+                <img src="https://wallpapercave.com/wp/wp9430285.jpg" class="movie-poster" />
+                <div class="movie-info">
+                    <h3 class="movie-title">Sanam Teri Kasam</h3>
+                    <div class="movie-meta"><span>2h 35m</span><span class="movie-rating"><i class="fas fa-star"></i>
+                            4.2</span></div>
+                    <p>Emotion, Drama</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://wallpapercave.com/wp/wp9737478.jpg" class="movie-poster" />
+                <div class="movie-info">
+                    <h3 class="movie-title">War</h3>
+                    <div class="movie-meta"><span>2h 15m</span><span class="movie-rating"><i class="fas fa-star"></i>
+                            4.5</span></div>
+                    <p>Action</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://tse4.mm.bing.net/th?id=OIP.icaL6LlzTg3sBYhSLFBV2QHaKN&pid=Api&P=0&h=220"
+                    class="movie-poster" />
+                <div class="movie-info">
+                    <h3 class="movie-title">Pathaan</h3>
+                    <div class="movie-meta"><span>2h 30m</span><span class="movie-rating"><i class="fas fa-star"></i>
+                            4.3</span></div>
+                    <p>Thriller, Spy</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src=" https://tse2.mm.bing.net/th?id=OIP.chFgRP7V_zOFfLsxDC1bHAHaJS&pid=Api&P=0&h=220"
+                    class="movie-poster" />
+                <div class="movie-info">
+                    <h3 class="movie-title">Bhool Bhulaiyaa 2</h3>
+                    <div class="movie-meta"><span>2h 20m</span><span class="movie-rating"><i class="fas fa-star"></i>
+                            4.1</span></div>
+                    <p>Comedy, Horror</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="movies">
+        <h2 class="section-title">Hollywood Movies</h2>
+        <div class="movie-grid">
+            <div class="movie-card">
+                <img src="https://posterspy.com/wp-content/uploads/2025/01/karate-kid-copy-2-redone-copy.png"
+                    class="movie-poster" />
+                <div class="movie-info">
+                    <h3 class="movie-title">Karate Kid Legends</h3>
+                    <div class="movie-meta"><span>2h 20m</span><span class="movie-rating"><i class="fas fa-star"></i>
+                            4.4</span></div>
+                    <p>Action, Adventure</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://mlpnk72yciwc.i.optimole.com/cqhiHLc.IIZS~2ef73/w:auto/h:auto/q:75/https://bleedingcool.com/wp-content/uploads/2024/05/bad_boys_ride_or_die_ver2_xlg.jpg"
+                    class="movie-poster" />
+                <div class="movie-info">
+                    <h3 class="movie-title">Bad Boys: Ride or Die</h3>
+                    <div class="movie-meta"><span>2h 18m</span><span class="movie-rating"><i class="fas fa-star"></i>
+                            4.6</span></div>
+                    <p>Action, Comedy</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://static1.srcdn.com/wordpress/wp-content/uploads/2023/05/oppenheimer-poster.jpg"
+                    class="movie-poster" />
+                <div class="movie-info">
+                    <h3 class="movie-title">Oppenheimer</h3>
+                    <div class="movie-meta"><span>3h</span><span class="movie-rating"><i class="fas fa-star"></i>
+                            4.8</span></div>
+                    <p>Drama, Biography</p>
+                </div>
+            </div>
+            <div class="movie-card">
+                <img src="https://www.theindianwire.com/wp-content/uploads/2019/02/Avengers-Endgame.jpg"
+                    class="movie-poster" />
+                <div class="movie-info">
+                    <h3 class="movie-title">Avengers: Endgame</h3>
+                    <div class="movie-meta"><span>3h 2m</span><span class="movie-rating"><i class="fas fa-star"></i>
+                            4.9</span></div>
+                    <p>Sci-Fi, Superhero</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    </section>
+    <section class="theaters">
+        <h2 class="section-title">Theaters Showing Telugu Movies</h2>
+        <div class="theater-list">
+            <div class="theater-card">
+                <h3 class="theater-name">PVR Cinemas - Hyderabad</h3>
+                <div class="show-times">
+                    <span class="show-time">10:00 AM</span>
+                    <span class="show-time">1:30 PM</span>
+                    <span class="show-time">4:45 PM</span>
+                    <span class="show-time">8:00 PM</span>
+                    <span class="show-time">11:15 PM</span>
+                </div>
+            </div>
+            <div class="theater-card">
+                <h3 class="theater-name">INOX - Visakhapatnam</h3>
+                <div class="show-times">
+                    <span class="show-time">11:00 AM</span>
+                    <span class="show-time">2:30 PM</span>
+                    <span class="show-time">5:45 PM</span>
+                    <span class="show-time">9:00 PM</span>
+                </div>
+            </div>
+            <div class="theater-card">
+                <h3 class="theater-name">Cinepolis - Vijayawada</h3>
+                <div class="show-times">
+                    <span class="show-time">9:30 AM</span>
+                    <span class="show-time">12:45 PM</span>
+                    <span class="show-time">3:30 PM</span>
+                    <span class="show-time">6:45 PM</span>
+                    <span class="show-time">10:00 PM</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Company</h3>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Investors</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Help</h3>
+                <ul>
+                    <li><a href="#">FAQs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Cancellation & Refund</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Use</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Corporate Information</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Download App</h3>
+                <ul>
+                    <li><a href="#"><i class="fab fa-apple"></i> App Store</a></li>
+                    <li><a href="#"><i class="fab fa-google-play"></i> Google Play</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Book My Show. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle functionality
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
